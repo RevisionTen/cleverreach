@@ -1,3 +1,5 @@
 services:
     RevisionTen\Cleverreach\Services\CleverreachService:
         autowire: true
+        arguments:
+            $config: '%cleverreach%'

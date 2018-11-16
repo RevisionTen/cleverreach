@@ -14,7 +14,17 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('cleverreach');
         $rootNode
             ->children()
-                ->scalarNode('site_name')->end()
+                ->scalarNode('client_id')->end()
+                ->scalarNode('user')->end()
+                ->scalarNode('password')->end()
+                ->arrayNode('campaigns')
+                    ->arrayPrototype()
+                        ->children()
+                            ->scalarNode('list_id')->end()
+                            ->scalarNode('form_id')->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

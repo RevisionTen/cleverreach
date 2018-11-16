@@ -1,0 +1,9 @@
+# Cleverreach example config.
+cleverreach:
+    client_id: '123456' # Your cleverreach client id.
+    user: 'myaccount@domain.tld' # Your cleverreach account name.
+    password: 'supersecret' # Your cleverreach password.
+    campaigns:
+        dailyNewsletterCampagin:
+            list_id: '123456' # Id of your newsletter list.
+            form_id: '123456' # Id of your form configuration.
