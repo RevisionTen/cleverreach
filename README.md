@@ -45,7 +45,7 @@ Symfony 3.4.\* example:
 $cleverreachService = $this->container->get(CleverreachService::class);
 
 $subscribed = $cleverreachService->subscribe('dailyNewsletterCampagin', 'visitor.email@domain.tld', 'My Website', [
-    'firstname' => 'Johne',
+    'firstname' => 'John',
     'lastname' => 'Doe',
 ]);
 ```
