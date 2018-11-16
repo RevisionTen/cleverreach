@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CleverreachBundle extends Bundle
 {
-    public const VERSION = '0.0.2';
+    public const VERSION = '0.0.3';
 
     /**
      * {@inheritdoc}
