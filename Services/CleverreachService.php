@@ -30,7 +30,7 @@ class CleverreachService
         ]);
     }
 
-    public function subscribe(string $campaign, string $email, string $source = null, array $globalAttributes = [])
+    public function subscribe(string $campaign, string $email, string $source = null, array $globalAttributes = []): bool
     {
         if (!isset($this->config['campaigns'][$campaign])) {
             return false;
@@ -86,16 +86,37 @@ class CleverreachService
         ]);
         $optinMailSent = 200 === $response->getStatusCode();
 
-        return [
-            $subscriber,
-            $token,
-            $optinMailSent,
-        ];
+        return $token && $subscriber && $optinMailSent;
     }
 
-    // Todo: Unsubscribe user.
-    public function unsubscribe(string $email)
+    /**
+     * Unsubscribes a user from all lists.
+     *
+     * @param string $campaign
+     * @param string $email
+     *
+     * @return bool
+     */
+    public function unsubscribe(string $campaign, string $email): bool
     {
+        if (!isset($this->config['campaigns'][$campaign])) {
+            return false;
+        }
+
+        $token = $this->getApiToken();
+        if (null === $token) {
+            return false;
+        }
+
+        // Delete subscriber.
+        $response = $this->client->request('DELETE', '/receivers.json/'.urlencode($email), [
+            'headers' => [
+                'Authorization' => 'Bearer '.$token,
+            ],
+            'http_errors' => false,
+        ]);
+
+        return 200 === $response->getStatusCode();
     }
 
     /**
